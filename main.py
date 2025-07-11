@@ -65,7 +65,7 @@ def save_user(username, password):
 
 # ================= واجهة تسجيل الدخول =================
 if st.session_state.user is None:
-    st.title("👥 Welcome to Thakum ChatBot")
+    st.title("👥 Welcome to ASS ChatBot")
     tab1, tab2 = st.tabs(["🔐 Login", "🆕 Create Account"])
 
     with tab1:

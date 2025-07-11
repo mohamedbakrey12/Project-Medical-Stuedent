@@ -14,7 +14,7 @@ def get_rag_chain():
     
     # 🟢 dummy embedding فقط للتحميل من FAISS
     embedding_model = HuggingFaceEmbeddings(
-        model_name="intfloat/e5-small-v2"  # نموذج خفيف ومدعوم
+        model_name="thenlper/gte-small"
     )
 
     # 🟢 تحميل vectorstore الجاهز من المجلد

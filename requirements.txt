@@ -7,3 +7,4 @@ tiktoken
 transformers
 sentence-transformers
 python-dotenv
+langchain-community

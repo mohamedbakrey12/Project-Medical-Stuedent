@@ -6,6 +6,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain.embeddings import FakeEmbeddings
 
 
 def get_rag_chain():
@@ -13,9 +14,9 @@ def get_rag_chain():
     load_dotenv()
     
     # 🟢 dummy embedding فقط للتحميل من FAISS
-    embedding_model = HuggingFaceEmbeddings(
-        model_name="thenlper/gte-small"
-    )
+
+    embedding_model = FakeEmbeddings(size=384)  # حجم أي نموذج BERT صغير
+
 
     # 🟢 تحميل vectorstore الجاهز من المجلد
     vectorstore = FAISS.load_local(

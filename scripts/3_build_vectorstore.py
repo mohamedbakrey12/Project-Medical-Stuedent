@@ -8,13 +8,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 processed_folder = "data/processed"
 faiss_folder = "vectorstores/arabic_faiss"
 
-# فقط dummy embeddings للتحميل
-embedding_model = HuggingFaceEmbeddings(model_name="intfloat/e5-small-v2")
-
-vectorstore = FAISS.load_local(
-    "vectorstores/arabic_faiss",
-    embedding_model,
-    allow_dangerous_deserialization=True)
+# ✅ تحميل النموذج العربي (Multilingual)
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+)
 
 # 📄 تقسيم النصوص إلى مقاطع
 text_splitter = RecursiveCharacterTextSplitter(

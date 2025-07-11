@@ -6,6 +6,9 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain.chat_models import ChatOpenAI
+
+
 
 
 def get_rag_chain():
@@ -25,14 +28,16 @@ def get_rag_chain():
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
     #  إعداد LLM (من OpenRouter أو غيره)
+
     llm = ChatOpenAI(
-                                base_url="https://openrouter.ai/api/v1",
-                                api_key=os.getenv("OPENROUTER_API_KEY"),
-                                model="openai/gpt-4o-mini",
-                                temperature=0.2,
-                                streaming=True,
-                                callbacks=[StreamingStdOutCallbackHandler()]
-                            )
+    model="openai/gpt-4o-mini",
+    temperature=0.2,
+    streaming=True,
+    callbacks=[StreamingStdOutCallbackHandler()],
+    openai_api_key=os.getenv("OPENROUTER_API_KEY"),  # ✅ الصحيح
+    openai_api_base="https://openrouter.ai/api/v1"   # ✅ الصحيح
+    )
+
 
     prompt_template = PromptTemplate(
         template="""

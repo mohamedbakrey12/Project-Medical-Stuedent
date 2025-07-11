@@ -15,8 +15,11 @@ def get_rag_chain():
     load_dotenv()
     openai_api_key = os.getenv("OPENAI_API_KEY")
 
-    embedding_model = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+    embedding_model = OpenAIEmbeddings(
+    openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+    openai_api_base="https://openrouter.ai/api/v1")
+
     )
 
     vectorstore = FAISS.load_local(

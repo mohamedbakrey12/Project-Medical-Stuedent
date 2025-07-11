@@ -18,17 +18,13 @@ def get_rag_chain():
     openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
-    embedding_model = OpenAIEmbeddings(
-    openai_api_key=os.getenv("OPENROUTER_API_KEY"),
-    openai_api_base="https://openrouter.ai/api/v1")
-
-    
+    # فقط dummy embeddings للتحميل
+    embedding_model = HuggingFaceEmbeddings(model_name="intfloat/e5-small-v2")
 
     vectorstore = FAISS.load_local(
-        "vectorstores/arabic_faiss",
-        embedding_model,
-        allow_dangerous_deserialization=True
-    )
+    "vectorstores/arabic_faiss",
+    embedding_model,
+    allow_dangerous_deserialization=True)
 
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 

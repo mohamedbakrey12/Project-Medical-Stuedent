@@ -8,6 +8,7 @@ from scripts.load_rag_chain import get_rag_chain  # يجب أن يكون لدي�
 # ================= إعداد الصفحة =================
 st.set_page_config(page_title="ASS ChatBot", layout="wide")
 
+
 # ================= الحالة =================
 if "user" not in st.session_state:
     st.session_state.user = None
